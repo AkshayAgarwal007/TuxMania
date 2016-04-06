@@ -110,7 +110,6 @@ Mania.Game.prototype = {
         //sound1.volume=1.0;
     	this.backSound_.play('',0,1,true);
     	this.backSound_.onLoop.add(this.playSound,this);
-        this.backSound_.play();
         this.backSound_.volume=0.1;
         
 	},
@@ -140,7 +139,8 @@ Mania.Game.prototype = {
     
     backtoLevels: function() {
         this.choice_snd.play();
-        this.state.start('Levels');
+        this.shutdown();
+        this.state.start('Levels',true,false);
     },
     
     over: function(btn) {
@@ -149,10 +149,6 @@ Mania.Game.prototype = {
 	
 	out: function(btn) {
 		btn.alpha=0.8;
-	},
-    
-	startGame: function() {
-		this.state.start('Game');
 	},
     
     playSound: function() {
@@ -465,6 +461,7 @@ Mania.Game.prototype = {
     },
     
     shutdown: function() {
+        this.backSound_.stop(); 
         this.x=null;
         this.y=null;
         this.answer=null;
@@ -488,7 +485,7 @@ Mania.Game.prototype = {
         main_menu=null;
         player=null;
         heartText=enemyText=scoreText=levelText=null;
-        this.backSound_.stop(); 
+        
              
     }
         

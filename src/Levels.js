@@ -89,13 +89,15 @@ Mania.Levels.prototype = {
 	
     backtoMenu: function() {
         this.choice_snd.play()
-        this.state.start('MainMenu')
+        this.shutdown();
+        this.state.start('MainMenu',true,false)
         
     },
     
 	startGame: function() {
         this.choice_snd.play();
-		this.state.start('Game');
+        this.shutdown();
+		this.state.start('Game',true,false);
 	},
     
     shutdown: function() {
