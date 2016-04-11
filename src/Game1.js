@@ -266,7 +266,11 @@ Mania.Game1.prototype = {
             this.birdOutsideBounds=true;
             if (this.isFruitThere) {
             this.destroyQuestion();
-            this.respawn();
+            gbg = this.setFruitLeft();
+            if (gbg==false)
+            this.replayGame();
+            else
+            this.respawn();    
             }
         }
         
