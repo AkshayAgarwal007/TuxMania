@@ -157,21 +157,14 @@ Mania.Game.prototype = {
     },
     
     onKeyUp: function(self,event) {
+        
         if (this.nosprite==false) {
             switch (event.keyCode) {    
-                
-                case Phaser.Keyboard.ZERO:
-                    if (this.answer==0)
-                            this.correctAnswer();
-                    else
-                            this.decrementScore();
-                    break;
-                    
                 case Phaser.Keyboard.ONE:
                     if (this.answer==1)
                             this.correctAnswer();
                     else
-                            this.this.decrementScore();
+                            this.decrementScore();
                     break;
                 case Phaser.Keyboard.TWO:
                     if (this.answer==2)
@@ -210,8 +203,8 @@ Mania.Game.prototype = {
                                 this.decrementScore();
                         break;
                 case Phaser.Keyboard.EIGHT:
-                    if (this.answer==8)
-                        this.correctAnswer();
+                    if (this.answer==8){
+                        this.correctAnswer();}
                         else
                                 this.decrementScore();
                         break;
@@ -231,7 +224,6 @@ Mania.Game.prototype = {
         this.x = Math.floor(Math.random() * 9) + 1;
         this.y = Math.floor(Math.random() * ((9-this.x) + 1));
         this.answer=this.x+this.y;
-        //return (x.toString() + y.toString() + " x 11 = " + x.toString() + "?" + y.toString());       
         return (this.x.toString() + " + " + this.y.toString() + " = ? " );      
     },
     
@@ -255,7 +247,7 @@ Mania.Game.prototype = {
         quesText.setText('');
         unmute.visible=false;
         main_menu.visible=false;
-        pause.visible=false;
+        pause.destroy();
         resume = this.add.sprite(Mania.GAME_WIDTH/2, Mania.GAME_HEIGHT/2, 'resume');
         resume.scale.setTo(0.7,0.7);
         resume.anchor.setTo(0.5, 0.5);
@@ -266,7 +258,7 @@ Mania.Game.prototype = {
     {
         unmute.visible=false;
         main_menu.visible=false;
-        pause.visible=false;
+        pause.destroy();
         this.replay=true;
         resume = this.add.sprite(Mania.GAME_WIDTH/2, Mania.GAME_HEIGHT/2, 'replay');
         resume.scale.setTo(0.7,0.7);
@@ -291,8 +283,8 @@ Mania.Game.prototype = {
     unpause: function(event) {
         if (this.game.paused) {
             
-            var x1 = Mania.GAME_WIDTH/2-resume.width/2, x2 = Mania.GAME_WIDTH/2+resume.width/2,
-                y1 = Mania.GAME_HEIGHT/2-resume.height/2, y2 =Mania.GAME_HEIGHT/2+resume.height/2;
+            var x1 = Mania.GAME_WIDTH/2-141, x2 = Mania.GAME_WIDTH/2+141,
+                y1 = Mania.GAME_HEIGHT/2-141, y2 =Mania.GAME_HEIGHT/2+141;
     
             if(event.x > x1 && event.x < x2 && event.y > y1 && event.y < y2 ){
     
@@ -300,13 +292,13 @@ Mania.Game.prototype = {
             this.choice_snd.play();
             unmute.visible=true;
             main_menu.visible=true;
-            pause.visible=true;
+    
                 
-            /*pause= this.add.button(1366-100, 25,'pause',this.pauseAndPlay,this);
+            pause= this.add.button(1366-100, 25,'pause',this.pauseAndPlay,this);
             pause.scale.setTo(0.5,0.5);
             pause.alpha=0.8;
             pause.events.onInputOver.add(this.over, this);
-            pause.events.onInputOut.add(this.out, this);*/
+            pause.events.onInputOut.add(this.out, this);
             
             this.game.paused=false;
             

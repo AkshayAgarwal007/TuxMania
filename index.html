@@ -10,17 +10,21 @@
 	<script src="src/MainMenu.js"></script>
     <script src="src/Levels.js"></script>
     <script src="src/Game.js"></script>
+	<script src="src/Game1.js"></script>
+	<script src = "src/Game2.js"></script>
 	
 </head>
 <body>
 <script>
 (function() {
-	var game = new Phaser.Game(1366,768, Phaser.AUTO, 'game');
+	var game = new Phaser.Game(1366,768, Phaser.CANVAS, 'game');
 	game.state.add('Boot', Mania.Boot);
 	game.state.add('Preloader', Mania.Preloader);
 	game.state.add('MainMenu', Mania.MainMenu);
     game.state.add('Levels', Mania.Levels);
 	game.state.add('Game', Mania.Game);
+	game.state.add('Game1', Mania.Game1);
+	game.state.add('Game2',Mania.Game2);
 	game.state.start('Boot');
 })();
 </script>
