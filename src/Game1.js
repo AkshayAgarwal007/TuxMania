@@ -123,7 +123,8 @@ Mania.Game1.prototype = {
     	this.backSound_.play('',0,1,true);
     	this.backSound_.onLoop.add(this.playSound,this);
         this.backSound_.volume=0.1;
-        this.createErrorDialog();
+        txt = "There are bugs in this game presently which would be fixed using Ninja Physics."
+        playerText = this.add.text(180,this.game.world.height-650,txt, { fontSize: '45px', fill: '#000' });
         
         
 	},
@@ -378,19 +379,7 @@ Mania.Game1.prototype = {
             
     },
     
-    createErrorDialog: function() {
-        if (this.movingRight==true)
-        xpos=0;
-        else 
-        xpos=55;
-        playerDialog = this.add.sprite(player.position.x-xpos,player.position.y-107,'dialog');
-        playerDialog.scale.setTo(0.47,0.4);
-        txt = "I will fix this by\nusing Ninja Physics."
-        playerText = this.add.text(player.position.x+35-xpos,player.position.y-95,txt, { fontSize: '45px', fill: '#000' });
-        this.game.time.events.add(Phaser.Timer.SECOND * 10, this.playerDialogDestroy, this);
-        this.add.tween(playerDialog).to( { alpha: 0 }, 9000, Phaser.Easing.Linear.None, true);
-        this.add.tween(playerText).to( { alpha: 0 }, 9000, Phaser.Easing.Linear.None, true);    
-    },
+    
     
     createPlayerDialog: function() {
         if (this.movingRight==true)
