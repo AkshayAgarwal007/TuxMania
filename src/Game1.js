@@ -12,7 +12,7 @@ Mania.Game1 = function(game){
     this.initialScale=null;
     this.movingRight=true;
     this.fruitLeft=15;
-    this.speed=90;
+    this.speed=200;
     this.collide=false;
     this.birdOutsideBounds=false;
     this.register=true;
@@ -444,7 +444,7 @@ Mania.Game1.prototype = {
     reduceHunger: function() {
         this.hunger-=0.1;
         bar.scale.x=this.initialScale-this.initialScale*(1-this.hunger);
-        if (this.hunger<=0)
+        if (this.hunger<=0.2)
         return false;
         return true;
     },
