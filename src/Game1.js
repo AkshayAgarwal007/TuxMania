@@ -123,7 +123,7 @@ Mania.Game1.prototype = {
     	this.backSound_.play('',0,1,true);
     	this.backSound_.onLoop.add(this.playSound,this);
         this.backSound_.volume=0.1;
-        txt = "There are bugs in this game presently which would be fixed using Ninja Physics."
+        txt = "There are bugs in this game presently which I would be fixed using Ninja Physics."
         playerText = this.add.text(180,this.game.world.height-650,txt, { fontSize: '45px', fill: '#000' });
         
         
