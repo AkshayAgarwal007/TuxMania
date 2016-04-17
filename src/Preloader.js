@@ -32,11 +32,13 @@ Mania.Preloader.prototype = {
     	this.load.image('left_btn' , 'assets/left_btn.png');
         this.load.image('level1', 'assets/level_btn.png');
 		this.load.image('level2', 'assets/level_btn2.png');
+		this.load.image('level3', 'assets/level_btn3.png');
         this.load.image('resume' , 'assets/resume.png');
         this.load.image('lwindow', 'assets/window.png');
         this.load.image('levels','assets/levels.png');
 		this.load.image('main_menu','assets/main_menu.png');
         this.load.image('player', 'assets/character.png');
+		this.load.spritesheet('wizard','assets/wizard.png',163,185);
 		this.load.image('bar-bg', 'assets/bar-bg.png');
 		this.load.image('bar', 'assets/bar.png');
 		this.load.image('house', 'assets/house.png');
@@ -58,6 +60,17 @@ Mania.Preloader.prototype = {
 		this.load.audio('pickup', 'sounds/pickup.mp3');
 		this.load.audio('sound4', 'sounds/disabled.wav');
 		this.load.audio('sound5', 'sounds/back_music2.wav');
+		this.load.image('inf','assets/inf.png');
+		this.load.image('sign','assets/sign.png');
+		this.load.audio('dart', 'sounds/dart.mp3');
+		this.load.audio('sound1_', 'sounds/one.mp3');
+		this.load.audio('sound2_', 'sounds/two.mp3');		
+		this.load.audio('sound3_', 'sounds/three.mp3');	
+    	this.load.audio('sound4_', 'sounds/four.mp3');
+    	this.load.audio('sound5_', 'sounds/five.mp3');    
+		this.load.audio('sound6_', 'sounds/six.mp3');
+		this.load.audio('sound7_', 'sounds/seven.mp3');
+		this.load.audio('intr_snd', 'sounds/intr_snd.mp3');
         
         
 	},
