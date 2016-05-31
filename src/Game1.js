@@ -13,7 +13,7 @@ Mania.Game1 = function(game){
     this.movingRight=true;
     this.fruitLeft=15;
     this.speed=90;
-    this.collide=false;
+    this.collide_=false;
     this.birdOutsideBounds=false;
     this.register=true;
     this.playerState='idle'
@@ -59,6 +59,7 @@ Mania.Game1.prototype = {
         
         player = this.add.sprite(250,Mania.GAME_HEIGHT-220,'player2');
         this.physics.arcade.enable(player);
+        player.anchor.setTo(0.5,0.5);
         player.body.gravity.y = 300;
         player.body.collideWorldBounds = false;
         player.body.velocity.x=0;
@@ -123,8 +124,6 @@ Mania.Game1.prototype = {
     	this.backSound_.play('',0,1,true);
     	this.backSound_.onLoop.add(this.playSound,this);
         this.backSound_.volume=0.1;
-        txt = "There are bugs in this game presently which I would be fixing using Ninja Physics."
-        playerText = this.add.text(180,this.game.world.height-650,txt, { fontSize: '45px', fill: '#000' });
         
         
 	},
@@ -265,7 +264,7 @@ Mania.Game1.prototype = {
         sprite.body.velocity.x=-this.speed;
         if (sprite.position.x<-180) {
             this.birdOutsideBounds=true;
-            if (this.isFruitThere) {
+            if (this.isFruitThere==false) {
             this.destroyQuestion();
             gbg = this.setFruitLeft();
             if (gbg==false)
@@ -332,12 +331,12 @@ Mania.Game1.prototype = {
         player.body.velocity.x=+120;
         this.playerState='walk';
         this.movingRight=true;
-        if (this.collide==false) {
+        if (this.collide_==false) {
         this.dart_snd.play('',0,1,true);
         this.dart_snd.volume=0.4;
     	this.dart_snd.onLoop.add(this.audioLoop,this);
         }
-        this.collide=true;
+        this.collide_=true;
             
         }
         
@@ -347,12 +346,12 @@ Mania.Game1.prototype = {
         player.body.velocity.x=-120;
         this.playerState='walk';
         this.movingRight=false;
-        if (this.collide==false) {
+        if (this.collide_==false) {
         this.dart_snd.play('',0,1,true);
         this.dart_snd.volume=0.4;
     	this.dart_snd.onLoop.add(this.audioLoop,this);
         }
-        this.collide=true;
+        this.collide_=true;
         
         
         }
@@ -370,11 +369,11 @@ Mania.Game1.prototype = {
             this.replayGame();
         else if (opt1==true) {
             this.createPlayerDialog();
-            this.respawn();
+            
         }
         else 
             this.wrapGameUp();
-        this.collide=false;
+        this.collide_=false;
         this.dart_snd.stop();
             
     },
@@ -440,8 +439,6 @@ Mania.Game1.prototype = {
     
     respawn: function()
     {
-        if(this.birdOutsideBounds==true)
-        {
             sprite.position.x=this.spawnx;    
             pear = this.add.sprite(sprite.position.x-61,Mania.GAME_HEIGHT-500,'pear');
             pear.scale.setTo(0.27,0.29);
@@ -456,13 +453,9 @@ Mania.Game1.prototype = {
             this.isQuesThere=true;
             this.register=true;
             this.birdOutsideBounds=false;
-        }
+        },
         
-        else {
-            this.game.time.events.add(Phaser.Timer.SECOND * 4, this.respawn, this);
-        }
-    },
-    
+        
     pauseAndPlay: function() {
         quesText.setText('');
         pause.destroy();
@@ -544,7 +537,7 @@ Mania.Game1.prototype = {
         this.birdOutsideBounds=false;
         this.register=true;
         this.playerState='idle';
-        this.collide=false;
+        this.collide_=false;
         layer1=layer2=layer3=null;
         tree1=tree2=null;
         ground=null;
